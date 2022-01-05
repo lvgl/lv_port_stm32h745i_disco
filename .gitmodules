@@ -1,0 +1,3 @@
+[submodule "CM7/lvgl"]
+	path = CM7/lvgl
+	url = https://github.com/lvgl/lvgl.git
