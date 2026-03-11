@@ -1,4 +1,4 @@
-# LVGL ported to the STM32H745I Discovery.
+# Fork of LVGL ported to the STM32H745I Discovery (CMake support added).
 
 The [STM32H745I Discovery kit](https://www.st.com/en/evaluation-tools/stm32h745i-disco.html) is an affordable development board with:
 * 480x272 RGB interface LCD with capacitive multi-touch panel
@@ -11,11 +11,25 @@ The [STM32H745I Discovery kit](https://www.st.com/en/evaluation-tools/stm32h745i
 
 The CubeMX drivers are used to initilaize the peripherals. 
 
-The project was created with CubeIDE.
+The original project was created with CubeIDE.
+
+This fork was created with CLion. I find STM32CubeIDE unproductive, and wanted a CMake project.
+
+The LVGL submodule in this version points to a later version of LVGL than its parent. This is primarily to fix display smearing issues on the STM32H745I-DISCO board due to incorrect cache clearing. Some modifications were required to use the newer API.
 
 ## Get started
 - Clone the project: `git clone https://github.com/lvgl/lv_port_stm32h745i_disco.git --recurse-submodules`
-- Import into CubeIDE
+  - `--recurse-submodules` is very important as it pulls the LVGL submodule
+- Open the project in CLion: 
+- Either:
+    - Import into CubeIDE ...or
+    - Open the project folder in a CMake-based IDE
+        - Build the `lv_port_stm32h745i_disco_cmake_cm4` target
+        - Build the `lv_port_stm32h745i_disco_cmake_cm7` target
+        - Run the `FLASH_CM4` target to flash the CM4 firmware 
+        - Run the `FLASH_CM7` target to flash the CM7 firmware (ditto)
+          - Note: You will need `STM32_Programmer_CLI` in your path. If you have STM32CubeIDE installed then you should find it at `/opt/st/stm32cubeide_<version>/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.linux64_<version>/tools/bin/STM32_Programmer_CLI`
+            - (Replace \<version> placeholders appropriately) 
 
 ## Notes
 

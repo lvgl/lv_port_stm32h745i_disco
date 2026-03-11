@@ -1,8 +1,8 @@
 /*
  * lvgl_port_lcd.h
  *
- *  Created on: 23 Dec 2021
- *      Author: Ahmet Alperen Bulut / github.com/ahmetalperenbulut
+ *  Updated for LVGL v9.x
+ *  Original: Ahmet Alperen Bulut / github.com/ahmetalperenbulut
  */
 
 #ifndef INC_LVGL_PORT_LCD_H_
@@ -16,6 +16,8 @@
  *      DEFINES
  *********************/
 
+#define LCD_INSTANCE    (0)
+
 /**********************
  *      TYPEDEFS
  **********************/
@@ -24,7 +26,10 @@
  * GLOBAL PROTOTYPES
  **********************/
 
-void LCD_init();
+/**
+ * @brief Initialize LCD display for LVGL v9
+ */
+void LCD_init(void);
 
 /**********************
  *      MACROS

@@ -113,13 +113,13 @@ int main(void)
 
 /* USER CODE BEGIN Boot_Mode_Sequence_1 */
 	/* Wait until CPU2 boots and enters in stop mode or timeout*/
-	timeout = 0xFFFF;
-	while ((__HAL_RCC_GET_FLAG(RCC_FLAG_D2CKRDY) != RESET) && (timeout-- > 0))
-		;
-	if (timeout < 0)
-	{
-		Error_Handler();
-	}
+	// timeout = 0xFFFF;
+	// while ((__HAL_RCC_GET_FLAG(RCC_FLAG_D2CKRDY) != RESET) && (timeout-- > 0))
+	// 	;
+	// if (timeout < 0)
+	// {
+	// 	Error_Handler();
+	// }
 /* USER CODE END Boot_Mode_Sequence_1 */
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -179,8 +179,10 @@ int main(void)
 	BSP_QSPI_EnableMemoryMappedMode(0);
 
 	lv_init();
+  lv_tick_set_cb(HAL_GetTick);
 	LCD_init();
 	touchpad_init();
+
 	lv_demo_widgets();
   /* USER CODE END 2 */
 
@@ -191,8 +193,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		HAL_Delay(5);
-		lv_task_handler();
+
+		lv_timer_handler();
+	  HAL_Delay(2);
 	}
   /* USER CODE END 3 */
 }
